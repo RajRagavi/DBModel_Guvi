@@ -1,3 +1,10 @@
+MongoDB Day 1
+
+Product JSON: https://github.com/rvsp/database/blob/master/mongodb/product.json
+
+
+
+Corresponding MongoDB queries
 1. db.products.find()
 2. db.products.find({ product_price: { $gte: 400, $lte: 800 } })
 3. db.products.find({ product_price: {$not: { $gte: 400, $lte: 600 }} })
