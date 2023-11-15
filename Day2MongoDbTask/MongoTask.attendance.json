@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "6554e95d2927a8e7efe1d054"
+  },
+  "user-id": 1,
+  "topic_id": 1,
+  "present": true,
+  "date": {
+    "$date": "2023-10-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6554e95d2927a8e7efe1d055"
+  },
+  "user-id": 2,
+  "topic_id": 2,
+  "present": true,
+  "date": {
+    "$date": "2020-10-17T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6554e95d2927a8e7efe1d056"
+  },
+  "user-id": 3,
+  "topic_id": 3,
+  "present": false,
+  "date": {
+    "$date": "2020-10-14T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6554e95d2927a8e7efe1d057"
+  },
+  "user-id": 4,
+  "topic_id": 4,
+  "present": false,
+  "date": {
+    "$date": "2020-10-24T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6554e95d2927a8e7efe1d058"
+  },
+  "user-id": 5,
+  "topic_id": 5,
+  "present": false,
+  "date": {
+    "$date": "2020-11-14T00:00:00.000Z"
+  }
+}]
