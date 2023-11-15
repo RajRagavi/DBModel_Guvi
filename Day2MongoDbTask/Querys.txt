@@ -1,0 +1,125 @@
+// 1. Find all the topics and tasks which are thought in the month of October
+
+
+// 1a.      db.tasks.find({
+//     due_date: {
+//       $gte: ISODate("2021-10-01"),
+//       $lt: ISODate("2021-11-01")
+//     }
+//   })
+
+//   1b.      db.topics.find({
+//             topic_date: {
+//             $gte: ISODate("2021-10-01"),
+//             $lt: ISODate("2021-11-01")
+//             }
+//         })
+
+
+// 2. Find all the company drives which appeared between 15 oct-2020 and 31-oct-2020
+
+// db.company_drives.find({
+//     drive_date: {
+//       $gte: ISODate("2020-10-15"),
+//       $lte: ISODate("2020-10-31")
+//     }
+//   })
+
+// 3.Find all the company drives and students who are appeared for the placement.
+
+// db.company_drives.aggregate([
+//     {
+//       $lookup: {
+//         from: "users",
+//         localField: "user_id",
+//         foreignField: "_id",
+//         as: "students"
+//       }
+//     },
+//     {
+//       $match: {
+//         "students": { $exists: true, $ne: [] } 
+//       }
+//     }
+//   ])
+  
+
+// 4.Find the number of problems solved by the user in codekata
+
+// db.codekata.aggregate([
+//     {
+//       $group: {
+//         _id: "$user-id",
+//         total_problems_solved: { $sum: "$no_of_problems_solved" }
+//       }
+//     }
+//   ])
+  
+
+// 5. Find all the mentors with who has the mentee's count more than 15
+
+
+// db.mentors.aggregate([
+//     {
+//       $match: {
+//         $expr: {
+//           $gt: [{ $size: { $ifNull: ["$mentees", []] } }, 15]
+//         }
+//       }
+//     }
+//   ])
+
+
+// 6.Find the number of users who are absent and task is not submitted  between 15 oct-2020 and 31-oct-2020
+
+// 6a.users who are absent
+//          db.attendance.aggregate([
+//     {
+//       $match: {
+//         "date": {
+//           $gte: ISODate("2020-10-15"),
+//           $lte: ISODate("2020-10-31")
+//         },
+//         "present": false
+//       }
+//     },
+//     {
+//       $group: {
+//         _id: "$user-id",
+//         total_absences: { $sum: 1 }
+//       }
+//     },
+//     {
+//       $match: {
+//         total_absences: { $gt: 0 }
+//       }
+//     }
+//   ])
+  
+// 6b. task is not submitted 
+
+// db.tasks.aggregate([
+//     {
+//       $match: {
+//         "due_date": {
+//           $gte: ISODate("2020-10-15"),
+//           $lte: ISODate("2020-10-31")
+//         },
+//         "submitted": false
+//       }
+//     },
+//     {
+//       $group: {
+//         _id: null,
+//         users_not_submitted: { $addToSet: "$user-id" }
+//       }
+//     },
+//     {
+//       $project: {
+//         _id: 0,
+//         total_users_tasks_not_submitted: { $size: "$users_not_submitted" }
+//       }
+//     }
+//   ])
+  
+
