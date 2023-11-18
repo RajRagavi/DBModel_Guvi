@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall Booking App</title>
+</head>
+<body>
+    <h1>Hall Booking App</h1>
+
+    <h2>List All Rooms with Booked Data</h2>
+    <button onclick="getAllRooms()">Get All Rooms</button>
+    <div id="allRooms"></div>
+
+    <h2>List All Customers with Booked Data</h2>
+    <button onclick="getAllCustomers()">Get All Customers</button>
+    <div id="allCustomers"></div>
+
+    <h2>Get Customer Booking Details</h2>
+    <label for="customerName">Customer Name:</label>
+    <input type="text" id="customerName" name="customerName" required>
+    <button onclick="getCustomerBookingDetails()">Get Customer Booking Details</button>
+    <div id="customerBookingDetails"></div>
+
+    <script>
+        async function getAllRooms() {
+            const response = await fetch('http://localhost:3000/rooms/bookings');
+            const data = await response.json();
+            document.getElementById('allRooms').innerText = JSON.stringify(data, null, 2);
+        }
+
+        async function getAllCustomers() {
+            const response = await fetch('http://localhost:3000/bookings/customers');
+            const data = await response.json();
+            document.getElementById('allCustomers').innerText = JSON.stringify(data, null, 2);
+        }
+
+        async function getCustomerBookingDetails() {
+            const customerName = document.getElementById('customerName').value;
+            const response = await fetch(`http://localhost:3000/bookings/customers/${customerName}`);
+            const data = await response.json();
+            document.getElementById('customerBookingDetails').innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
